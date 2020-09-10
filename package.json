@@ -1,0 +1,84 @@
+{
+  "name": "dashbird-test-assignment",
+  "version": "0.1.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "build": "webpack"
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": [
+      "airbnb",
+      "prettier"
+    ],
+    "plugins": [
+      "react",
+      "jsx-a11y",
+      "import"
+    ],
+    "env": {
+      "browser": true
+    },
+    "rules": {
+      "no-plusplus": "off",
+      "import/no-unresolved": "off",
+      "react/jsx-props-no-spreading": "off",
+      "react/jsx-wrap-multilines": "off",
+      "react/style-prop-object": "off",
+      "react/prop-types": "off",
+      "func-names": "off"
+    },
+    "globals": {
+      "API_BASE_URL": true
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "./src/**/*.+(jsx|json)": [
+      "prettier --write",
+      "eslint ./src/**/*.jsx --fix-dry-run"
+    ]
+  },
+  "dependencies": {
+    "axios": "^0.20.0",
+    "immer": "^7.0.8",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-intl": "^5.8.0",
+    "react-intl-redux": "^2.2.0",
+    "react-redux": "^7.2.1",
+    "react-redux-toastr": "^7.6.5",
+    "redux": "^4.0.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^3.5.3",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "html-webpack-plugin": "^4.2.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.1.6",
+    "prettier": "2.0.2",
+    "sass": "^1.26.10",
+    "sass-loader": "^10.0.2",
+    "style-loader": "^1.2.1",
+    "svg-inline-loader": "^0.8.2",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  }
+}

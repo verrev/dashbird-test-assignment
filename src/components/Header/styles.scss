@@ -1,0 +1,54 @@
+@import "assets/index.scss";
+
+.icon {
+  height: getSpacing(3);
+  vertical-align: middle;
+  display: inline-block;
+  fill: $colorMuted;
+}
+
+.smallIcon {
+  composes: icon;
+  height: getSpacing(2);
+}
+
+.smallPrimaryIcon {
+  composes: smallIcon;
+  fill: $colorSecondary;
+  padding-left: getSpacing(0.5);
+}
+
+.headerBar {
+  height: getSpacing(8);
+  padding: 0 getSpacing(2);
+  line-height: getSpacing(8);
+  background: $colorSecondary;
+  display: block;
+  color: $colorMuted;
+  margin-bottom: getSpacing(3);
+
+  div {
+    float: right;
+  }
+}
+
+.headerTitle {
+  composes: smallText;
+  height: getSpacing(3);
+  line-height: getSpacing(3);
+  color: $colorMuted;
+  padding: 0 getSpacing(2);
+  display: flex;
+  justify-content: space-between;
+}
+
+.headerTitleLinks {
+  color: $colorSecondary;
+  > *:not(:last-of-type) {
+    padding-right: getSpacing(1);
+  }
+}
+
+.breadcrumbArrow {
+  padding: 0 getSpacing(0.7);
+}
