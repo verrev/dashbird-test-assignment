@@ -15,6 +15,8 @@ const RootContainer = () => {
   const [sortOrders, setSortOrders] = useState(initialSortOrders);
   const [overviewData, setOverviewData] = useState(initialOverviewData);
 
+  const [activeTabIndex, setActiveTabIndex] = useState(0);
+
   const onOverviewSortClicked = (changedSwimlane) =>
     setSortOrders(
       sortOrders.map((order) =>
@@ -33,12 +35,18 @@ const RootContainer = () => {
     );
   }, [sortOrders]);
 
+  const onTabClicked = (tabIndex) => {
+    setActiveTabIndex(tabIndex);
+  };
+
   return isVisible ? (
     <>
       <Header />
       <Body
         overviewData={overviewData}
         onOverviewSortClicked={onOverviewSortClicked}
+        activeTabIndex={activeTabIndex}
+        onTabClicked={onTabClicked}
       />
     </>
   ) : null;

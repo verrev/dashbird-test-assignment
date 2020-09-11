@@ -5,13 +5,18 @@ import RewindRight from "components/core/icons/RewindRight";
 import Metrics from "components/Metrics";
 import Overview from "components/Overview";
 
-export default ({ overviewData, onOverviewSortClicked }) => (
+export default ({
+  overviewData,
+  onOverviewSortClicked,
+  activeTabIndex,
+  onTabClicked
+}) => (
   <div className={styles.body}>
     <div className={styles.bodyTitle}>
       <RewindRight className={styles.bodyTitleIcon} />
       <FormattedMessage id="page.title" />
     </div>
-    <Metrics />
+    <Metrics activeTabIndex={activeTabIndex} onTabClicked={onTabClicked} />
     <Overview
       overviewData={overviewData}
       onOverviewSortClicked={onOverviewSortClicked}
