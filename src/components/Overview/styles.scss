@@ -1,0 +1,66 @@
+@import "assets/index.scss";
+
+.icon {
+  composes: centerVertically;
+  height: getSpacing(2);
+  fill: $colorMuted;
+}
+
+.overview {
+  margin-top: getSpacing(1);
+  display: flex;
+}
+
+.swimLane {
+  width: 100%;
+  margin-right: getSpacing(1);
+}
+
+.overviewColumnHeader {
+  composes: smallText;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: getSpacing(3);
+  line-height: getSpacing(3);
+}
+
+.overviewColumnHeaderOrderBy {
+  text-align: right;
+}
+
+.card {
+  background: #ffffff;
+  min-height: getSpacing(7);
+  display: flex;
+  margin-bottom: getSpacing(0.5);
+  font-size: 0.8rem;
+}
+
+.cardIconWrapper {
+  flex-basis: getSpacing(4);
+  padding-right: getSpacing(1);
+  margin: getSpacing(1);
+  border-right: 2px solid lighten($colorMuted, 30);
+}
+
+.cardIcon {
+  fill: $colorSecondary;
+}
+
+.cardContents {
+  padding: getSpacing(1) getSpacing(1) getSpacing(1) 0;
+  flex: auto;
+}
+
+.cardContentsTitle {
+  display: flex;
+  justify-content: space-between;
+  & > div:nth-child(2) {
+    color: $colorMuted;
+  }
+}
+
+.cardContentsSubtitle {
+  color: $colorMuted;
+}

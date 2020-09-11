@@ -1,0 +1,20 @@
+@import "assets/index.scss";
+
+.body {
+  margin: 0 getSpacing(2);
+}
+
+.bodyTitle {
+  height: getSpacing(5);
+  line-height: getSpacing(5);
+  font-size: 2.5rem;
+}
+
+.bodyTitleIcon {
+  composes: centerVertically;
+  height: getSpacing(5);
+  fill: #d3185e;
+  background: white;
+  border-radius: getSpacing(0.5);
+  margin-right: getSpacing(1);
+}
