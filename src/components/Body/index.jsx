@@ -4,13 +4,16 @@ import RewindRight from "components/core/icons/RewindRight";
 import Metrics from "components/Metrics";
 import Overview from "components/Overview";
 
-export default () => (
+export default ({ overviewData, onOverviewSortClicked }) => (
   <div className={styles.body}>
     <div className={styles.bodyTitle}>
       <RewindRight className={styles.bodyTitleIcon} />
       <span>alerting-check-policy-conditions</span>
     </div>
     <Metrics />
-    <Overview />
+    <Overview
+      overviewData={overviewData}
+      onOverviewSortClicked={onOverviewSortClicked}
+    />
   </div>
 );

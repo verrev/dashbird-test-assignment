@@ -26,7 +26,12 @@
 }
 
 .overviewColumnHeaderOrderBy {
+  composes: pseudoLink;
   text-align: right;
+  background: none;
+  border: none;
+  outline: none;
+  color: $colorMuted;
 }
 
 .card {
@@ -56,6 +61,7 @@
 .cardContentsTitle {
   display: flex;
   justify-content: space-between;
+  padding-bottom: getSpacing(0.5);
   & > div:nth-child(2) {
     color: $colorMuted;
   }
