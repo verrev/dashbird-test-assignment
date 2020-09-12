@@ -7,6 +7,7 @@ import {
   initialSortOrders,
   getSortedOverviewData
 } from "utils/overviewData";
+import tabs from "utils/tabs";
 
 const RootContainer = () => {
   const loadingItems = useSelector(({ loading: { current } }) => current);
@@ -43,6 +44,7 @@ const RootContainer = () => {
     <>
       <Header />
       <Body
+        tabs={tabs}
         overviewData={overviewData}
         onOverviewSortClicked={onOverviewSortClicked}
         activeTabIndex={activeTabIndex}

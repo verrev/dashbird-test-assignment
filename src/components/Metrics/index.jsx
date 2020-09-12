@@ -1,43 +1,17 @@
 import React from "react";
 import styles from "components/Metrics/styles.scss";
-import Clock from "components/core/icons/Clock";
-import Sum from "components/core/icons/Sum";
-import Memory from "components/core/icons/Memory";
-import Page from "components/core/icons/Page";
+import Sparkline from "components/Sparkline";
 
-const tabs = [
-  {
-    title: "AVG. RESPONSE DELAY",
-    Icon: Clock,
-    value: "23ms"
-  },
-  {
-    title: "LAST QUEUE SIZE",
-    Icon: Sum,
-    value: 32
-  },
-  {
-    title: "AVG. PAYLOAD SIZE",
-    Icon: Memory,
-    value: "1.35kb"
-  },
-  {
-    title: "DEAD LETTER QUEUE",
-    Icon: Page,
-    value: 0
-  }
-];
-
-export default ({ activeTabIndex, onTabClicked }) => (
+export default ({ tabs, activeTabIndex, onTabClicked }) => (
   <div className={styles.metrics}>
     <div className={styles.tabs}>
       {tabs.map(({ Icon, ...tab }, i) => {
+        const isActive = i === activeTabIndex;
+
         return (
-          <button
-            className={`${styles.tab} ${
-              i === activeTabIndex ? styles.activeTab : ""
-            }`}
-            type="button"
+          <div
+            key={tab.title}
+            className={`${styles.tab} ${isActive ? styles.activeTab : ""}`}
             onClick={() => onTabClicked(i)}
           >
             <div className={styles.tabHeader}>
@@ -50,7 +24,8 @@ export default ({ activeTabIndex, onTabClicked }) => (
               </div>
             </div>
             <div className={styles.tabValue}>{tab.value}</div>
-          </button>
+            {!isActive && <Sparkline data={tab.data} width={184} height={20} />}
+          </div>
         );
       })}
     </div>

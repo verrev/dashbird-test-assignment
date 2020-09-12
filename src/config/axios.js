@@ -1,5 +1,5 @@
 import axios from "axios";
-import showToast from "components/Core/Toast";
+import showToast from "components/Toast";
 
 const axiosInstance = axios.create({
   baseURL: API_BASE_URL

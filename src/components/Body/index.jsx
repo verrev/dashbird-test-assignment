@@ -6,6 +6,7 @@ import Metrics from "components/Metrics";
 import Overview from "components/Overview";
 
 export default ({
+  tabs,
   overviewData,
   onOverviewSortClicked,
   activeTabIndex,
@@ -16,7 +17,11 @@ export default ({
       <RewindRight className={styles.bodyTitleIcon} />
       <FormattedMessage id="page.title" />
     </div>
-    <Metrics activeTabIndex={activeTabIndex} onTabClicked={onTabClicked} />
+    <Metrics
+      tabs={tabs}
+      activeTabIndex={activeTabIndex}
+      onTabClicked={onTabClicked}
+    />
     <Overview
       overviewData={overviewData}
       onOverviewSortClicked={onOverviewSortClicked}

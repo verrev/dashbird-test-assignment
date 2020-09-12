@@ -26,6 +26,8 @@
       "import/no-unresolved": "off",
       "react/jsx-props-no-spreading": "off",
       "react/jsx-wrap-multilines": "off",
+      "jsx-a11y/click-events-have-key-events": "off",
+      "jsx-a11y/no-static-element-interactions": "off",
       "react/style-prop-object": "off",
       "react/prop-types": "off",
       "func-names": "off"
@@ -47,6 +49,7 @@
   },
   "dependencies": {
     "axios": "^0.20.0",
+    "d3": "^6.1.1",
     "immer": "^7.0.8",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
