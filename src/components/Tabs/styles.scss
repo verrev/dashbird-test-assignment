@@ -1,0 +1,54 @@
+@import "assets/index.scss";
+
+.metrics {
+  margin-top: getSpacing(2);
+}
+
+.icon {
+  composes: centerVertically;
+  height: getSpacing(2);
+  fill: $colorSecondary;
+}
+
+.tabs {
+  display: flex;
+  height: getSpacing(9);
+}
+
+.tab {
+  border: none;
+  outline: none;
+  flex-basis: getSpacing(32);
+  padding-top: getSpacing(1);
+  font-size: 1.2rem;
+  cursor: pointer;
+  text-align: left;
+  padding-right: getSpacing(2);
+  padding-left: getSpacing(2);
+  border-left: 2px solid lighten($colorMuted, 30);
+
+  &:hover {
+    background: darken(#ffffff, 10);
+  }
+}
+
+.activeTab {
+  composes: tab;
+  background: #ffffff;
+  font-size: 2rem;
+  border-left: 2px solid $colorSecondary;
+  &:hover {
+    background: #ffffff;
+  }
+}
+
+.tabHeader {
+  composes: smallText;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.tabValue {
+  font-weight: 200;
+}
