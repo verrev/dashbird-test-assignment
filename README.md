@@ -23,7 +23,7 @@ There are quite a few development dependancies to allow for robust tooling and c
 
     "axios": "^0.20.0", - used to make HTTP requests
     "d3": "^6.1.1", - powerful and industry standard library for manipulating documents based on data
-    "immer": "^7.0.8", - used to make reducers a little more succint
+    "immer": "^7.0.8", - used to make reducers a little more succinct
     "react": "^16.13.1", - this is a react app
     "react-dom": "^16.13.1", - used for dom manipulations
     "react-intl": "^5.8.0", - used to internationalize apps (in this app there is only one language but in my experience it's always easier to add this in the first place and avoid hardcoding texts into the views)
