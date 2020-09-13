@@ -47,6 +47,7 @@ What I did:
 * Used hooks and arrow function components. I generally use a mix of hooks and classes where classes are preferred for more complex components since hooks can get hard to follow at times
 
 What I didn't have time for 😔:
+* Implementing the chart dragging selector, I have an idea of how it should work but unfortunately ran out of time
 * Generating nicer datasets that would be more similar to the ones shown in the design
 * Adding dynamic time ranges to the chart
 * Write tests (although in this case, there was less business logic and more visual work. That being said, tests are possible to generate using something like jest and making reference screenshots after each feature is implemented, then if something is changed later, the tests will alert the developer if something changed in the UI and if it might've been accidental)

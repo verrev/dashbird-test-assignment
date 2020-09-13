@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   scaleBand,
   scaleLinear,
@@ -62,7 +62,14 @@ const addBars = (svg, data, innerHeight, innerWidth) => {
     .attr("height", (d) => Math.abs(y(d.value) - y(0)));
 };
 
-const addLine = (svg, data, innerHeight, innerWidth) => {
+const addLine = (
+  svg,
+  data,
+  innerHeight,
+  innerWidth,
+  isDragging,
+  setIsDragging
+) => {
   const x = scaleLinear().domain([0, data.length]).range([0, innerWidth]);
   const y = scaleLinear().domain([0, 1]).range([innerHeight, 0]);
 
@@ -114,10 +121,33 @@ const addLine = (svg, data, innerHeight, innerWidth) => {
         .curve(curveBasis)
     )
     .style("fill", "url(#primaryChartGradient)");
+
+  // TODO: Dragging selector line will setState of the tab title and reset after dragging stops. Also render a line on the chart
+  svg.on("mousedown", () => {
+    setIsDragging(true);
+  });
+
+  svg.on("mouseup", () => {
+    setIsDragging(false);
+  });
+
+  svg.on("mousemove", (e) => {
+    if (isDragging) {
+      svg
+        .append("rect")
+        .attr("x", e.screenX)
+        .attr("y")
+        .attr("width", 2)
+        .attr("height", innerHeight);
+
+      console.log(parseInt(-y(x.invert(e.screenX)), 10));
+    }
+  });
 };
 
 export default ({ width, height, primaryBarData, primaryLineData }) => {
   const chartDomNode = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
     chartDomNode.current.innerHTML = "";
@@ -133,7 +163,14 @@ export default ({ width, height, primaryBarData, primaryLineData }) => {
       .attr("transform", `translate(${MARGIN.left},${MARGIN.top})`);
 
     addBars(svg, primaryBarData, innerHeight, innerWidth);
-    addLine(svg, primaryLineData, innerHeight, innerWidth);
+    addLine(
+      svg,
+      primaryLineData,
+      innerHeight,
+      innerWidth,
+      isDragging,
+      setIsDragging
+    );
   }, [primaryBarData, primaryLineData]);
 
   return <div ref={chartDomNode} />;
