@@ -8,7 +8,7 @@ import Overview from "components/Overview";
 export default ({
   primaryBarData,
   primaryLineData,
-  tabs,
+  averageValues,
   overviewData,
   onOverviewSortClicked,
   activeTabIndex,
@@ -22,7 +22,7 @@ export default ({
     <Metrics
       primaryBarData={primaryBarData}
       primaryLineData={primaryLineData}
-      tabs={tabs}
+      averageValues={averageValues}
       activeTabIndex={activeTabIndex}
       onTabClicked={onTabClicked}
     />

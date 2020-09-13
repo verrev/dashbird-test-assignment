@@ -43,7 +43,7 @@ module.exports = {
       favicon: "./src/assets/images/favicon.ico"
     }),
     new DefinePlugin({
-      API_BASE_URL: JSON.stringify("http://localhost:7777/api/v1")
+      API_BASE_URL: JSON.stringify("https://numbriturg.ee") // just to demo requests
     })
   ],
   resolve: {

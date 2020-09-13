@@ -7,6 +7,8 @@ export default ({ width, height, data }) => {
   const chartDomNode = useRef(null);
 
   useEffect(() => {
+    chartDomNode.current.innerHTML = "";
+
     const innerWidth = width - MARGIN.left - MARGIN.right;
     const innerHeight = height - MARGIN.top - MARGIN.bottom;
 
@@ -73,7 +75,7 @@ export default ({ width, height, data }) => {
           .curve(curveBasis)
       )
       .style("fill", "url(#topChartGradient)");
-  }, []);
+  }, [data]);
 
   return <svg ref={chartDomNode} width={width} height={height} />;
 };

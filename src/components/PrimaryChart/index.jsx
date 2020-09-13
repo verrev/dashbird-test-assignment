@@ -9,6 +9,7 @@ import {
   max,
   curveBasis,
   timeFormat,
+  isoParse,
   format,
   area,
   line
@@ -28,20 +29,10 @@ const addBars = (svg, data, innerHeight, innerWidth) => {
   const xAxis = axisBottom().scale(x).tickFormat(timeFormat("%H:%M"));
   const yAxis = axisLeft().scale(y).tickFormat(format(".2s"));
 
-  x.domain(
-    data.map(function (d) {
-      return d.date;
-    })
-  );
+  x.domain(data.map((d) => isoParse(d.date)));
+  y.domain([0, max(data, (d) => d.value)]);
 
-  y.domain([
-    0,
-    max(data, function (d) {
-      return d.value;
-    })
-  ]);
-
-  svg.append("g").call(function (g) {
+  svg.append("g").call((g) => {
     g.call(xAxis);
     g.select(".domain").attr("stroke", COLOR_MUTED).attr("stroke-width", 1);
     g.attr("transform", `translate(0,${innerHeight})`);
@@ -51,7 +42,7 @@ const addBars = (svg, data, innerHeight, innerWidth) => {
       .attr("stroke-width", 1);
   });
 
-  svg.append("g").call(function (g) {
+  svg.append("g").call((g) => {
     g.call(yAxis);
     g.select(".domain").remove();
     g.selectAll(".tick line, text")
@@ -64,19 +55,11 @@ const addBars = (svg, data, innerHeight, innerWidth) => {
     .data(data)
     .enter()
     .append("rect")
-    .style("fill", function (d) {
-      return d.value < 0 ? COLOR_SECONDARY : COLOR_DANGER;
-    })
-    .attr("x", function (d) {
-      return x(d.date);
-    })
+    .style("fill", (d) => (d.value < 0 ? COLOR_SECONDARY : COLOR_DANGER))
+    .attr("x", (d) => x(d.date))
     .attr("width", 5)
-    .attr("y", function (d) {
-      return y(d.value);
-    })
-    .attr("height", function (d) {
-      return Math.abs(y(d.value) - y(0));
-    });
+    .attr("y", (d) => y(d.value))
+    .attr("height", (d) => Math.abs(y(d.value) - y(0)));
 };
 
 const addLine = (svg, data, innerHeight, innerWidth) => {
@@ -137,6 +120,8 @@ export default ({ width, height, primaryBarData, primaryLineData }) => {
   const chartDomNode = useRef(null);
 
   useEffect(() => {
+    chartDomNode.current.innerHTML = "";
+
     const innerWidth = width - MARGIN.left - MARGIN.right;
     const innerHeight = height - MARGIN.top - MARGIN.bottom;
 
@@ -149,7 +134,7 @@ export default ({ width, height, primaryBarData, primaryLineData }) => {
 
     addBars(svg, primaryBarData, innerHeight, innerWidth);
     addLine(svg, primaryLineData, innerHeight, innerWidth);
-  }, []);
+  }, [primaryBarData, primaryLineData]);
 
   return <div ref={chartDomNode} />;
 };

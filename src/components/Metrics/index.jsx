@@ -4,26 +4,33 @@ import Tabs from "components/Tabs";
 import TopChart from "components/TopChart";
 import PrimaryChart from "components/PrimaryChart";
 
+const WIDTH = 1000;
+
 export default ({
   primaryBarData,
   primaryLineData,
-  tabs,
+  averageValues,
   activeTabIndex,
   onTabClicked
 }) => (
   <div className={styles.metrics}>
     <Tabs
-      tabs={tabs}
+      averageValues={averageValues}
+      charts={primaryLineData}
       activeTabIndex={activeTabIndex}
       onTabClicked={onTabClicked}
     />
     <div className={styles.charts}>
-      <TopChart data={tabs[activeTabIndex].data} />
+      <TopChart
+        width={WIDTH}
+        height={70}
+        data={primaryLineData[activeTabIndex] || []}
+      />
       <PrimaryChart
-        width={1000}
+        width={WIDTH}
         height={224}
-        primaryBarData={primaryBarData}
-        primaryLineData={tabs[activeTabIndex].data}
+        primaryBarData={primaryBarData[activeTabIndex] || []}
+        primaryLineData={primaryLineData[activeTabIndex] || []}
       />
     </div>
   </div>

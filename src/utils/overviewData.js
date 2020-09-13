@@ -11,7 +11,7 @@ export const initialOverviewData = [
       {
         id: 0,
         title: "usage-service-prod-record-inventory-usage-on-two-lines",
-        subtitle: "125ms"
+        subtitle: "337ms"
       },
       {
         id: 1,
@@ -21,7 +21,7 @@ export const initialOverviewData = [
       {
         id: 2,
         title: "usage-service-prod-record-inventory-usage",
-        subtitle: "125ms"
+        subtitle: "55ms"
       }
     ]
   },
@@ -35,21 +35,21 @@ export const initialOverviewData = [
         title: "Queue is growing",
         time: "3 days ago",
         subtitle:
-          "duration (in ms) was above 1 on average during the last 1 minute"
+          "duration (in ms) was above 7 on average during the last 1 minute"
       },
       {
         id: 4,
         title: "Queue is growing",
-        time: "3 days ago",
+        time: "2 days ago",
         subtitle:
-          "duration (in ms) was above 1 on average during the last 1 minute"
+          "duration (in ms) was above 14 on average during the last 1 minute"
       },
       {
         id: 5,
         title: "Queue is growing",
-        time: "3 days ago",
+        time: "1 days ago",
         subtitle:
-          "duration (in ms) was above 1 on average during the last 1 minute"
+          "duration (in ms) was above 4 on average during the last 1 minute"
       }
     ]
   },
@@ -61,23 +61,23 @@ export const initialOverviewData = [
       {
         id: 6,
         title: "Incident #41288",
-        time: "3 days ago",
+        time: "7 days ago",
         subtitle:
-          "duration (in ms) was above 1 on average during the last 1 minute"
+          "duration (in ms) was above 13 on average during the last 1 minute"
       },
       {
         id: 7,
         title: "Incident #41288",
-        time: "3 days ago",
+        time: "6 days ago",
         subtitle:
-          "duration (in ms) was above 1 on average during the last 1 minute"
+          "duration (in ms) was above 5 on average during the last 1 minute"
       },
       {
         id: 8,
         title: "Incident #41288",
         time: "3 days ago",
         subtitle:
-          "duration (in ms) was above 1 on average during the last 1 minute"
+          "duration (in ms) was above 223 on average during the last 1 minute"
       }
     ]
   }

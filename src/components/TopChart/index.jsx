@@ -1,4 +1,5 @@
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import styles from "components/TopChart/styles.scss";
 import Warning from "components/core/icons/Warning";
 import Bulb from "components/core/icons/Bulb";
@@ -9,34 +10,38 @@ import DownCaret from "components/core/icons/DownCaret";
 import Chart from "components/TopChart/Chart";
 
 const topChartLegends = [
-  { title: "Pending increased", color: "#fb0f05" },
-  { title: "Pending solved", color: "#3a2cba" }
+  { titleKey: "primaryChart.pendingIncreased", color: "#fb0f05" },
+  { titleKey: "primaryChart.pendingSolved", color: "#3a2cba" }
 ];
 
 const topChartIndicators = [
-  { title: "Alerts", Icon: Warning },
-  { title: "Insights", Icon: Bulb },
-  { title: "Config. change", Icon: Gear }
+  { titleKey: "primaryChart.alerts", Icon: Warning },
+  { titleKey: "primaryChart.insights", Icon: Bulb },
+  { titleKey: "primaryChart.configChange", Icon: Gear }
 ];
 
-export default ({ data }) => (
+export default ({ width, height, data }) => (
   <div className={styles.topChart}>
     <div className={styles.topChartTitle}>
       <span className={styles.topChartLegend}>
-        {topChartLegends.map((indicator) => (
-          <span key={indicator.title} className={styles.topChartLegendItem}>
+        {topChartLegends.map((legend) => (
+          <span key={legend.titleKey} className={styles.topChartLegendItem}>
             <span
               className={styles.square}
-              style={{ background: indicator.color }}
+              style={{ background: legend.color }}
             />
-            <span className={styles.centerVertically}>{indicator.title}</span>
+            <span className={styles.centerVertically}>
+              <FormattedMessage id={legend.titleKey} />
+            </span>
           </span>
         ))}
       </span>
       {topChartIndicators.map(({ Icon, ...indicator }) => (
-        <span key={indicator.title} className={styles.topChartIndicator}>
+        <span key={indicator.titleKey} className={styles.topChartIndicator}>
           <Icon className={styles.icon} />
-          <span className={styles.centerVertically}>{indicator.title}</span>
+          <span className={styles.centerVertically}>
+            <FormattedMessage id={indicator.titleKey} />
+          </span>
         </span>
       ))}
       <span className={styles.topChartDatepicker}>
@@ -49,6 +54,6 @@ export default ({ data }) => (
         </span>
       </span>
     </div>
-    <Chart data={data} width={1000} height={70} />
+    <Chart width={width} height={height} data={data} />
   </div>
 );

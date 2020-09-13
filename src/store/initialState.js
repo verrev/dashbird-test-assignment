@@ -11,8 +11,8 @@ export default {
     current: []
   },
   analytics: {
-    chosenDeal: null,
-    paymentClientSecret: null,
-    paymentSucceeded: false
+    primaryLineData: [],
+    primaryBarData: [],
+    averageValues: []
   }
 };

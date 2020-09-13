@@ -1,25 +1,21 @@
 import * as actionTypes from "actions/actionTypes";
 
-export const putCreatePaymentIntent = (deal, offerId) => ({
-  type: actionTypes.PUT_PAYMENT_INTENT,
+export const getPrimaryLineData = () => ({
+  type: actionTypes.GET_PRIMARY_LINE_DATA,
   payload: {
     request: {
-      url: `/payments`,
-      method: "PUT",
-      data: {
-        dealId: deal.id,
-        offerId
-      }
+      url: "/primary-line-data.json",
+      method: "GET"
     }
-  },
-  meta: deal
+  }
 });
 
-export const cancelPayment = () => ({
-  type: actionTypes.CANCEL_PAYMENT
-});
-
-export const setPaymentSuccess = (paymentSucceeded) => ({
-  type: actionTypes.SET_PAYMENT_SUCCESS,
-  payload: paymentSucceeded
+export const getPrimaryBarData = () => ({
+  type: actionTypes.GET_PRIMARY_BAR_DATA,
+  payload: {
+    request: {
+      url: "/primary-bar-data.json",
+      method: "GET"
+    }
+  }
 });
