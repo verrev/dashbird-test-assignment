@@ -8,6 +8,7 @@ import {
   getSortedOverviewData
 } from "utils/overviewData";
 import tabs from "utils/tabs";
+import { primaryLineData, primaryBarData } from "utils/primaryData";
 
 const RootContainer = () => {
   const loadingItems = useSelector(({ loading: { current } }) => current);
@@ -44,6 +45,8 @@ const RootContainer = () => {
     <>
       <Header />
       <Body
+        primaryBarData={primaryBarData}
+        primaryLineData={primaryLineData}
         tabs={tabs}
         overviewData={overviewData}
         onOverviewSortClicked={onOverviewSortClicked}

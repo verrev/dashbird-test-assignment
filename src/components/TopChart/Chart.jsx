@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
-import { line, select, scaleLinear, curveBasis } from "d3";
+import { line, select, scaleLinear, area, curveBasis } from "d3";
 
-const MARGIN = { top: 5, right: 5, bottom: 5, left: 5 };
+const MARGIN = { top: 5, right: 0, bottom: 5, left: 0 };
 
 export default ({ width, height, data }) => {
   const chartDomNode = useRef(null);
@@ -24,13 +24,13 @@ export default ({ width, height, data }) => {
       .x((d, i) => x(i))
       .y((d) => y(d))
       .curve(curveBasis);
-
     svg
       .append("path")
       .datum(data)
       .attr("fill", "none")
-      .attr("stroke", "#bbb")
-      .attr("stroke-width", 1)
+      .attr("stroke", "#939393")
+      .attr("stroke-opacity", 0.1)
+      .attr("stroke-width", 2)
       .attr("d", svgLine);
 
     svg
@@ -39,6 +39,40 @@ export default ({ width, height, data }) => {
       .attr("cx", x(data.length - 1))
       .attr("cy", y(data[data.length - 1]))
       .attr("fill", "#939393");
+
+    const linearGradient = svg
+      .append("defs")
+      .append("linearGradient")
+      .attr("id", "topChartGradient")
+      .attr("x1", "0%")
+      .attr("x2", "0%")
+      .attr("y1", "0%")
+      .attr("y2", "100%");
+    linearGradient
+      .append("stop")
+      .attr("offset", "0%")
+      .style("stop-color", "#939393")
+      .style("stop-opacity", 0.03);
+
+    linearGradient
+      .append("stop")
+      .attr("offset", "100%")
+      .style("stop-color", "#ffffff")
+      .style("stop-opacity", 0.2);
+
+    svg
+      .append("path")
+      .datum(data)
+      .attr("stroke", "none")
+      .attr(
+        "d",
+        area()
+          .x((d, i) => x(i))
+          .y0(height)
+          .y1((d) => y(d))
+          .curve(curveBasis)
+      )
+      .style("fill", "url(#topChartGradient)");
   }, []);
 
   return <svg ref={chartDomNode} width={width} height={height} />;

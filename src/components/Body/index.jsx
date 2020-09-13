@@ -6,6 +6,8 @@ import Metrics from "components/Metrics";
 import Overview from "components/Overview";
 
 export default ({
+  primaryBarData,
+  primaryLineData,
   tabs,
   overviewData,
   onOverviewSortClicked,
@@ -18,6 +20,8 @@ export default ({
       <FormattedMessage id="page.title" />
     </div>
     <Metrics
+      primaryBarData={primaryBarData}
+      primaryLineData={primaryLineData}
       tabs={tabs}
       activeTabIndex={activeTabIndex}
       onTabClicked={onTabClicked}

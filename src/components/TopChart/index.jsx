@@ -1,78 +1,54 @@
-import React, { useRef, useEffect } from "react";
-import { line, select, scaleLinear, area } from "d3";
+import React from "react";
+import styles from "components/TopChart/styles.scss";
+import Warning from "components/core/icons/Warning";
+import Bulb from "components/core/icons/Bulb";
+import Gear from "components/core/icons/Gear";
+import RightArrow from "components/core/icons/RightArrow";
+import Calendar from "components/core/icons/Calendar";
+import DownCaret from "components/core/icons/DownCaret";
+import Chart from "components/TopChart/Chart";
 
-const MARGIN = { top: 5, right: 0, bottom: 5, left: 0 };
+const topChartLegends = [
+  { title: "Pending increased", color: "#fb0f05" },
+  { title: "Pending solved", color: "#3a2cba" }
+];
 
-export default ({ width, height, data }) => {
-  const chartDomNode = useRef(null);
+const topChartIndicators = [
+  { title: "Alerts", Icon: Warning },
+  { title: "Insights", Icon: Bulb },
+  { title: "Config. change", Icon: Gear }
+];
 
-  useEffect(() => {
-    const innerWidth = width - MARGIN.left - MARGIN.right;
-    const innerHeight = height - MARGIN.top - MARGIN.bottom;
-
-    const x = scaleLinear().domain([0, data.length]).range([0, innerWidth]);
-    const y = scaleLinear().domain([0, 1]).range([innerHeight, 0]);
-
-    const svg = select(chartDomNode.current)
-      .append("svg")
-      .attr("width", width)
-      .attr("height", height)
-      .append("g")
-      .attr("transform", `translate(${MARGIN.left},${MARGIN.top})`);
-
-    const svgLine = line()
-      .x((d, i) => x(i))
-      .y((d) => y(d));
-
-    svg
-      .append("path")
-      .datum(data)
-      .attr("fill", "none")
-      .attr("stroke", "#939393")
-      .attr("stroke-opacity", 0.1)
-      .attr("stroke-width", 2)
-      .attr("d", svgLine);
-
-    svg
-      .append("circle")
-      .attr("r", 1)
-      .attr("cx", x(data.length - 1))
-      .attr("cy", y(data[data.length - 1]))
-      .attr("fill", "#939393");
-
-    const linearGradient = svg
-      .append("defs")
-      .append("linearGradient")
-      .attr("id", "gradient")
-      .attr("x1", "0%")
-      .attr("x2", "0%")
-      .attr("y1", "0%")
-      .attr("y2", "100%");
-    linearGradient
-      .append("stop")
-      .attr("offset", "0%")
-      .style("stop-color", "939393")
-      .style("stop-opacity", 0.03);
-
-    linearGradient
-      .append("stop")
-      .attr("offset", "100%")
-      .style("stop-color", "#ffffff")
-      .style("stop-opacity", 0.2);
-
-    svg
-      .append("path")
-      .datum(data)
-      .attr("stroke", "none")
-      .attr(
-        "d",
-        area()
-          .x((d, i) => x(i))
-          .y0(height)
-          .y1((d) => y(d))
-      )
-      .style("fill", "url(#gradient)");
-  }, []);
-
-  return <svg ref={chartDomNode} width={width} height={height} />;
-};
+export default ({ data }) => (
+  <div className={styles.topChart}>
+    <div className={styles.topChartTitle}>
+      <span className={styles.topChartLegend}>
+        {topChartLegends.map((indicator) => (
+          <span key={indicator.title} className={styles.topChartLegendItem}>
+            <span
+              className={styles.square}
+              style={{ background: indicator.color }}
+            />
+            <span className={styles.centerVertically}>{indicator.title}</span>
+          </span>
+        ))}
+      </span>
+      {topChartIndicators.map(({ Icon, ...indicator }) => (
+        <span key={indicator.title} className={styles.topChartIndicator}>
+          <Icon className={styles.icon} />
+          <span className={styles.centerVertically}>{indicator.title}</span>
+        </span>
+      ))}
+      <span className={styles.topChartDatepicker}>
+        <span className={styles.pseudoLink}>~15 hours ago </span>
+        <RightArrow className={styles.mutedIcon} />
+        <span className={styles.pseudoLink}>~in 9 hours </span>
+        <span className={styles.topChartDatepickerCalendar}>
+          <Calendar className={styles.icon} />
+          <DownCaret className={styles.icon} />
+        </span>
+      </span>
+    </div>
+    <Chart data={data} width={1000} height={70} />
+  </div>
+);
